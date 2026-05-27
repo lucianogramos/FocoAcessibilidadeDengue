@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.foco_acessibilidade_dengue.ui.auth_screen.login.LoginScreen
 import com.foco_acessibilidade_dengue.ui.auth_screen.signup.SignUpScreen
+import com.foco_acessibilidade_dengue.ui.report_screen.ReportScreen
 import com.foco_acessibilidade_dengue.ui.theme.FocoAcessibilidadeDengueTheme
 
 class MainActivity : ComponentActivity() {
@@ -29,6 +30,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = "signup") {
                             SignUpScreen { navController.navigate("login") }
+                        }
+                        composable(route = "report") {
+                            ReportScreen()
                         }
                     }
                 }

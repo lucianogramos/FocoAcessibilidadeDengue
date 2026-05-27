@@ -3,13 +3,12 @@ package com.foco_acessibilidade_dengue.ui.auth_screen
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.LinkInteractionListener
 import androidx.compose.ui.text.SpanStyle
@@ -22,32 +21,38 @@ import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun AuthInput(
+fun AuthTextField(
     value: String,
     onValueChange: (String) -> Unit,
     label: String,
-    iconId: Int,
     modifier: Modifier = Modifier,
     placeholder: String = "",
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     visualTransformation: VisualTransformation = VisualTransformation.None
 ) {
+    val colorScheme = MaterialTheme.colorScheme
+
     OutlinedTextField(
         value = value,
         onValueChange = onValueChange,
-        label = { Text(label, color = MaterialTheme.colorScheme.onBackground) },
+        label = { Text(label) },
         shape = RoundedCornerShape(8.dp),
         modifier = modifier.fillMaxWidth(),
         placeholder = { Text(placeholder) },
         keyboardOptions = keyboardOptions,
         visualTransformation = visualTransformation,
-        leadingIcon = {
-            Icon(
-                painter = painterResource(id = iconId),
-                contentDescription = label,
-                tint = MaterialTheme.colorScheme.onBackground
-            )
-        }
+        colors = OutlinedTextFieldDefaults.colors(
+            focusedLabelColor = colorScheme.onBackground,
+            unfocusedLabelColor = colorScheme.onBackground.copy(alpha = 0.7f),
+            focusedContainerColor = colorScheme.background,
+            unfocusedContainerColor = colorScheme.background,
+            focusedPlaceholderColor = colorScheme.onBackground.copy(alpha = 0.7f),
+            unfocusedPlaceholderColor = colorScheme.onBackground.copy(alpha = 0.7f),
+            focusedTextColor = colorScheme.onBackground,
+            unfocusedTextColor = colorScheme.onBackground,
+            focusedBorderColor = colorScheme.primary,
+            unfocusedBorderColor = colorScheme.outline
+        )
     )
 }
 
